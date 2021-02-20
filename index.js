@@ -1,6 +1,11 @@
+//id="";final="";function display(text){final+='"'+text.substr(0,4)+'":"'+text.substr(5)+'", '};document.getElementById(id).innerText.split("\n").forEach(display);final=final.substr(0,final.length-2);console.log(final)
+
 function check(){
     raw = document.getElementById("input").value
     rawsplit = raw.split("-")
+
+    modules={"A104":"Biology", "A105":"General", "A106":"Organic", "A107":"Physics", "A108":"Laboratory", "A113":"Mathematics", "A364":"Analytical", "E114":"Mathematics", "A216":"Polymer", "A291":"Materials", "A217":"Laboratory Skills in Analytical Testing", "A218":"Quality Assurance and Data Science", "E343":"Wafer Fabrication and Packaging", "A345":"Biomaterials", "A394":"Materials Analysis", "A391":"Materials Processing", "A333":"Nanotechnology", "A395":"Composite Materials Design and Applications", "A396":"Additive Manufacturing for Applied Materials", "C207":"Database Systems"}
+    document.getElementById("name").innerHTML=rawsplit[0]+" "+modules[rawsplit[0]]
 
     datecode = rawsplit[1].split("")
     durationcode = rawsplit[3].split("")
