@@ -11,6 +11,9 @@ html, body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: url("bg.jpg") no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 #top {
@@ -19,11 +22,18 @@ html, body{
     align-items: center;
     margin-bottom: 20px;
 }
+#top *{
+    text-align: center;
+}
 
 #info {
     display: flex;
     justify-content: left;
     font-size: large;
+}
+#info ul{
+    padding: 0 20px;
+    width: 100%;
 }
 
 .display{
@@ -33,12 +43,13 @@ html, body{
 #input{
     border-radius: 5px;
     height: 30px;
-    width: 250px;
+    width: 90%;
     border: 2px solid lightgray;
     display: flex;
     align-items: center;
     outline: none;
     padding: 0 10px;
+    transition: all 0.5s;
 }
 
 #input:focus{
@@ -49,4 +60,19 @@ html, body{
     border: 2px solid lightgray;
     padding: 5px 20px;
     border-radius: 8px;
+    background: white;
+    width: auto;
+    max-width: 80% !important;
+    box-shadow: 0px 0px 50px 0px rgba(0,0,0,0.5);
+}
+
+@media only screen and (max-width: 500px) {
+    #info{
+        font-size: smaller;
+    }
+}
+@media only screen and (min-width: 500px) {
+    #main{
+        padding: 10px 50px;
+    }
 }
