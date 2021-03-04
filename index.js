@@ -1,7 +1,5 @@
 //id="";final="";function display(text){final+='"'+text.substr(0,4)+'":"'+text.substr(5)+'", '};document.getElementById(id).innerText.split("\n").forEach(display);final=final.substr(0,final.length-2);console.log(final)
 
-const { bigIntLiteral } = require("@babel/types")
-
 function check(){
     raw = document.getElementById("input").value
     rawsplit = raw.split("-")
