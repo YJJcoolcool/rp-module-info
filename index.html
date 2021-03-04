@@ -5,21 +5,26 @@
         <link rel="stylesheet" type="text/css" href="./style.css">
     </head>
     <body>
-        <h1>RP Module Code Breakdown</h1>
-        <h3>Enter your module code below:</h3>
-        <input type="text" value="" onkeyup="check()" id="input">
-        <div id="info">
-            <ul>
-                <li>Module Name: <a id="name" class="display"></a></li>
-                <li>Module Date & Time: <a id="datetime" class="display"></a></li>
-                <li>Class: <a id="class" class="display"></a>
-                    <ul>
-                        <li>Building: <a id="building" class="display"></a></li>
-                        <li>Level: <a id="level" class="display"></a></li>
-                        <li>Classroom: <a id="classroom" class="display"></a></li>
-                    </ul>
-                </li>
-            </ul>
+        <div id="main">
+            <div id="top">
+                <h1>RP Module Code Breakdown</h1>
+                <h3>Enter your module code below:</h3>
+                <input type="text" value="" onkeyup="check()" id="input" placeholder="Paste your module code here">
+            </div>
+            <div id="info">
+                <ul>
+                    <li style="display: none;">Module Name: <a id="name" class="display"></a></li>
+                    <li>Module Date & Time: <a id="datetime" class="display"></a></li>
+                    <li>Class: <a id="class" class="display"></a>
+                        <ul>
+                            <li>Building: <a id="building" class="display"></a></li>
+                            <li>Level: <a id="level" class="display"></a></li>
+                            <li>Classroom: <a id="classroom" class="display"></a></li>
+                            <li>Google Maps Link: <a id="gmaps" class="display" target="_blank"></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
         <script src="./index.js"></script>
     </body>

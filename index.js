@@ -1,11 +1,13 @@
 //id="";final="";function display(text){final+='"'+text.substr(0,4)+'":"'+text.substr(5)+'", '};document.getElementById(id).innerText.split("\n").forEach(display);final=final.substr(0,final.length-2);console.log(final)
 
+const { bigIntLiteral } = require("@babel/types")
+
 function check(){
     raw = document.getElementById("input").value
     rawsplit = raw.split("-")
 
-    modules={"A104":"Biology", "A105":"General", "A106":"Organic", "A107":"Physics", "A108":"Laboratory", "A113":"Mathematics", "A364":"Analytical", "E114":"Mathematics", "A216":"Polymer", "A291":"Materials", "A217":"Laboratory Skills in Analytical Testing", "A218":"Quality Assurance and Data Science", "E343":"Wafer Fabrication and Packaging", "A345":"Biomaterials", "A394":"Materials Analysis", "A391":"Materials Processing", "A333":"Nanotechnology", "A395":"Composite Materials Design and Applications", "A396":"Additive Manufacturing for Applied Materials", "C207":"Database Systems"}
-    document.getElementById("name").innerHTML=rawsplit[0]+" "+modules[rawsplit[0]]
+    //modules={"A104":"Biology", "A105":"General", "A106":"Organic", "A107":"Physics", "A108":"Laboratory", "A113":"Mathematics", "A364":"Analytical", "E114":"Mathematics", "A216":"Polymer", "A291":"Materials", "A217":"Laboratory Skills in Analytical Testing", "A218":"Quality Assurance and Data Science", "E343":"Wafer Fabrication and Packaging", "A345":"Biomaterials", "A394":"Materials Analysis", "A391":"Materials Processing", "A333":"Nanotechnology", "A395":"Composite Materials Design and Applications", "A396":"Additive Manufacturing for Applied Materials", "C207":"Database Systems"}
+    //document.getElementById("name").innerHTML=rawsplit[0]+" "+modules[rawsplit[0]]
 
     datecode = rawsplit[1].split("")
     durationcode = rawsplit[3].split("")
@@ -18,15 +20,22 @@ function check(){
         datecodetext+=", Day "+datecode[i]+" from "
         //Starttime
         starttimenum=starttime[datecode[i+1]]
-        starttimetext=starttimenum.toString()
         if (starttimenum<1200) {
+            starttimetext=starttimenum.toString()
             if (starttimetext.length==3) {
                 datecodetext+=starttimetext.substr(0,1)+":"+starttimetext.substr(1)+" AM to "
             } else {
                 datecodetext+=starttimetext.substr(0,2)+":"+starttimetext.substr(2)+" AM to "
             }
         } else {
-            datecodetext+=starttimetext.substr(0,2)+":"+starttimetext.substr(2)+" PM to "
+            starttimenum-=1200
+            starttimetext=starttimenum.toString()
+            starttimenum+=1200
+            if (starttimetext.length==3) {
+                datecodetext+=starttimetext.substr(0,1)+":"+starttimetext.substr(1)+" PM to "
+            } else {
+                datecodetext+=starttimetext.substr(0,2)+":"+starttimetext.substr(2)+" PM to "
+            }
         }
         //Duration
         if (durationcode[j]=="A") {
@@ -71,7 +80,68 @@ function check(){
 
     classcode = rawsplit[2]
     document.getElementById("class").innerHTML = classcode
-    document.getElementById("building").innerHTML = classcode.substr(0,2)
-    document.getElementById("level").innerHTML = classcode.substr(2,1)
-    document.getElementById("classroom").innerHTML = classcode.substr(3,1)
+    buildinglist = ['W1','W2','W3','W4','W5','W6','E1','E2','E3','E4','E5','E6', 'IC']
+    if (buildinglist.includes(classcode.substr(0,2))){
+        if (classcode.substr(0,2)=="IC"){
+            document.getElementById("building").innerHTML = "RPIC";
+        } else {
+            document.getElementById("building").innerHTML = classcode.substr(0,2)
+        }
+        document.getElementById("level").innerHTML = classcode.substr(2,1)
+        document.getElementById("classroom").innerHTML = classcode.substr(3,1)
+    } else {
+        document.getElementById("building").innerHTML = "-";
+        document.getElementById("level").innerHTML = "-";
+        document.getElementById("classroom").innerHTML = "-";
+    }
+    let link="";
+    switch(document.getElementById("building").innerHTML){
+        case "W1":
+            link="https://goo.gl/maps/EYGPSwvUqse6fzAcA";
+            break;
+        case "W2":
+            link="https://goo.gl/maps/2Yox5WUhLjJBPMxY9";
+            break;
+        case "W3":
+            link="https://goo.gl/maps/4TJdMesLHNC93wT48";
+            break;
+        case "W4":
+            link="https://goo.gl/maps/fpx1RQP1APeseUya9";
+            break;
+        case "W5":
+            link="https://goo.gl/maps/f45ofFm5Hu62eUKo6";
+            break;
+        case "W6":
+            link="https://goo.gl/maps/4JX9dMJNVQ3gXi1E9";
+            break;
+        case "E1":
+            link="https://goo.gl/maps/asKP1eD81Y65pwtA9";
+            break;
+        case "E2":
+            link="https://goo.gl/maps/S1KAiEMQmrxjxzcA7";
+            break;
+        case "E3":
+            link="https://goo.gl/maps/vkfLtRA4ajVuYsBE6";
+            break;
+        case "E4":
+            link="https://goo.gl/maps/3jcqWtf4mdHdGXY17";
+            break;
+        case "E5":
+            link="https://goo.gl/maps/Sob3sUUGPNU7WPyi8";
+            break;
+        case "E6":
+            link="https://goo.gl/maps/CnsWUbH7eSuaNQJN9";
+            break;
+        case "RPIC":
+            link="https://goo.gl/maps/DZhsQvsFf18zjq3E6";
+            break;
+        default:
+            link="-";
+    }
+    document.getElementById("gmaps").innerHTML=link;
+    if (link!="-"){
+        document.getElementById("gmaps").href = link;
+    } else {
+        document.getElementById("gmaps").removeAttribute("href");
+    }
 }
