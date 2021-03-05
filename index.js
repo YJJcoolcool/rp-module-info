@@ -1,8 +1,9 @@
 //id="";final="";function display(text){final+='"'+text.substr(0,4)+'":"'+text.substr(5)+'", '};document.getElementById(id).innerText.split("\n").forEach(display);final=final.substr(0,final.length-2);console.log(final)
 
 function check(){
-    raw = document.getElementById("input").value
-    rawsplit = raw.split("-")
+    document.getElementById("input").value = document.getElementById("input").value.toUpperCase();
+    raw = document.getElementById("input").value;
+    rawsplit = raw.split("-");
 
     //modules={"A104":"Biology", "A105":"General", "A106":"Organic", "A107":"Physics", "A108":"Laboratory", "A113":"Mathematics", "A364":"Analytical", "E114":"Mathematics", "A216":"Polymer", "A291":"Materials", "A217":"Laboratory Skills in Analytical Testing", "A218":"Quality Assurance and Data Science", "E343":"Wafer Fabrication and Packaging", "A345":"Biomaterials", "A394":"Materials Analysis", "A391":"Materials Processing", "A333":"Nanotechnology", "A395":"Composite Materials Design and Applications", "A396":"Additive Manufacturing for Applied Materials", "C207":"Database Systems"}
     //document.getElementById("name").innerHTML=rawsplit[0]+" "+modules[rawsplit[0]]
@@ -69,7 +70,7 @@ function check(){
         }
         j++
     }
-    if (datecodetext=="") {
+    if (datecodetext=="" || datecodetext.includes("N:aN")) {
         datecodetext="ERROR"
     } else {
         datecodetext=datecodetext.substr(2)
@@ -77,7 +78,11 @@ function check(){
     document.getElementById("datetime").innerHTML = datecodetext
 
     classcode = rawsplit[2]
-    document.getElementById("class").innerHTML = classcode
+    if (classcode=="ELEARNING" || classcode.startsWith("HB")){
+        document.getElementById("class").innerHTML = "E-Learning / Home Based Learning (HBL)"
+    } else {
+        document.getElementById("class").innerHTML = classcode
+    }
     buildinglist = ['W1','W2','W3','W4','W5','W6','E1','E2','E3','E4','E5','E6', 'IC']
     if (buildinglist.includes(classcode.substr(0,2))){
         if (classcode.substr(0,2)=="IC"){
