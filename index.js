@@ -14,12 +14,12 @@ function check(){
     durationtime={"B":430, "C":400, "D":300, "E":230, "F":215, "G":200, "H":130, "I":115, "J":100}
     datecodetext = ""
     j=0
-    for (i=0; i<datecode.length; i+=2){
+    for (let i=0; i<datecode.length; i+=2){
         datecodetext+=", Day "+datecode[i]+" from "
         //Starttime
-        starttimenum=starttime[datecode[i+1]]
+        let starttimenum=starttime[datecode[i+1]]
         if (starttimenum<1200) {
-            starttimetext=starttimenum.toString()
+            let starttimetext=starttimenum.toString()
             if (starttimetext.length==3) {
                 datecodetext+=starttimetext.substr(0,1)+":"+starttimetext.substr(1)+" AM to "
             } else {
@@ -27,7 +27,7 @@ function check(){
             }
         } else {
             starttimenum-=1200
-            starttimetext=starttimenum.toString()
+            let starttimetext=starttimenum.toString()
             starttimenum+=1200
             if (starttimetext.length==3) {
                 datecodetext+=starttimetext.substr(0,1)+":"+starttimetext.substr(1)+" PM to "
@@ -46,7 +46,7 @@ function check(){
             }
         } else {
             starttimenum+=durationtime[durationcode[j]]
-            starttimetext=starttimenum.toString()
+            let starttimetext=starttimenum.toString()
             if (parseInt(starttimetext.substr(-2))>=60){
                 starttimenum+=40
                 starttimetext=starttimenum.toString()
